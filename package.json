@@ -1,0 +1,51 @@
+{
+  "name": "autogent",
+  "displayName": "Auto Unit Test Generator with OpenAI",
+  "description": "Generate unit tests using the OpenAI API",
+  "version": "0.0.1",
+  "publisher": "markmelnic",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "main": "./out/extension",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "axios": "^1.6.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vscode": "^1.1.37"
+  },
+  "activationEvents": [
+    "onCommand:autogent.setApiKey",
+    "onCommand:autogent.setOrganizationId",
+    "onCommand:autogent.generateUnitTest"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "autogent.setApiKey",
+        "title": "Set OpenAI API Key",
+        "category": "Autogent"
+      },
+      {
+        "command": "autogent.setOrganizationId",
+        "title": "Set OpenAI Organization ID",
+        "category": "Autogent"
+      },
+      {
+        "command": "autogent.generateUnitTest",
+        "title": "Generate Unit Test",
+        "category": "Autogent"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markmelnic/autogent"
+  }
+}
