@@ -89,7 +89,7 @@ async function generateUnitTest(selectedText: string): Promise<string> {
   const prompt = [
     {
       role: "user",
-      content: `Write a unit test for the function ${selectedText}.`,
+      content: `Write the unit test function, code only, for the following function\n${selectedText}`,
     },
   ];
 
