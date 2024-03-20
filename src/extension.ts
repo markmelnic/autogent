@@ -79,17 +79,22 @@ function getSelectedFunction(): string | undefined {
 
 async function generateUnitTest(selectedText: string): Promise<string> {
   if (!OPENAI_API_KEY) {
-    await vscode.commands.executeCommand("autogent.setApiKey");
+    vscode.commands.executeCommand("autogent.setApiKey");
+    throw new Error("OpenAI API key not set");
   }
   if (!OPENAI_ORGANIZATION_ID) {
-    await vscode.commands.executeCommand("autogent.setOrganizationId");
+    vscode.commands.executeCommand("autogent.setOrganizationId");
+    throw new Error("OpenAI organization id not set");
   }
 
   const openaiEndpoint = "https://api.openai.com/v1/chat/completions";
   const prompt = [
+    { role: "system", content: "Imagine you are an expert QA engineer. You will be given functions and you need to write a unit test for it. Only write the unit test function, code only, without comments, explanation or any other text." },
     {
       role: "user",
-      content: `Write the unit test function, code only, for the following function\n${selectedText}`,
+      // Write the unit test function for the following function\n${selectedText}
+      // Write the unit test function, code only, for the following function\n${selectedText}
+      content: selectedText,
     },
   ];
 
